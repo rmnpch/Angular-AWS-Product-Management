@@ -37,11 +37,11 @@ export class ProductService {
         this.products.update(p => [...p, product]);
     }
 
-    deleteProduct(name: string) {
-        this.products.update(p => p.filter(item => item.name !== name));
+    deleteProduct(id: number) {
+        this.products.update(p => p.filter(item => item.id !== id));
     }
 
-    searchByName(name: string) {
+    searchByName(name: string): Product[] {
         return this.products().filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
     }
 }

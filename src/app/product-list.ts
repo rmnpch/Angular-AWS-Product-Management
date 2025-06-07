@@ -1,40 +1,21 @@
 import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ProductService } from './product.service';
+import { ProductTable } from './product-table';
 @Component({
     selector: 'app-product-list',
     standalone: true,
-    imports: [CommonModule],
+    imports: [ProductTable],
     template: `
     <h2>All Products</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Price</th>
-          <th>Supplier</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let p of products()">
-          <td>{{ p.name | titlecase }}</td>
-          <td>{{ p.type }}</td>    
-          <td>{{ p.price | currency: 'AUD' }}</td>
-          <td>{{ p.supplier }}</td> 
-          <td><button class="btn btn-danger btn-sm" (click)="deleteProduct(p.name)">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <product-table [products]="products()" [canDelete]="true" (delete)="deleteProduct($event)"></product-table>
   `
 })
 export class ProductList {
     private service = inject(ProductService);
     products = computed(() => this.service.getAll());
 
-    deleteProduct(name: string) {
-        this.service.deleteProduct(name);
+    deleteProduct(id: number) {
+        this.service.deleteProduct(id);
     }
 }
 
