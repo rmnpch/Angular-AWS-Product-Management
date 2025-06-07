@@ -19,10 +19,10 @@ import { ProductService } from './product.service';
       </thead>
       <tbody>
         <tr *ngFor="let p of products()">
-          <td>{{ p.name }}</td>
-          <td>{{ p.type }}</td>
-          <td>\${{ p.price }}</td>
-          <td>{{ p.supplier }}</td>
+          <td>{{ p.name | titlecase }}</td>
+          <td>{{ p.type }}</td>    
+          <td>{{ p.price | currency: 'AUD' }}</td>
+          <td>{{ p.supplier }}</td> 
           <td><button class="btn btn-danger btn-sm" (click)="deleteProduct(p.name)">Delete</button></td>
         </tr>
       </tbody>
@@ -37,3 +37,4 @@ export class ProductList {
         this.service.deleteProduct(name);
     }
 }
+

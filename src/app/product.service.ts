@@ -1,16 +1,39 @@
 import { Injectable, signal } from '@angular/core';
+import { Product } from './product.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    private products = signal<any[]>([]);
+
+
+    private nextId = 3;
+
+    private readonly initialProducts: Product[] = [
+        {
+            id: 1,
+            name: 'PlayStation 5',
+            type: 'Gaming',
+            price: 799,
+            supplier: 'Sony Australia'
+        },
+        {
+            id: 2,
+            name: 'Apple AirPods Pro',
+            type: 'Audio',
+            price: 399,
+            supplier: 'Apple'
+        }
+    ];
+
+    private products = signal<Product[]>(this.initialProducts);
+
 
     getAll() {
         return this.products();
     }
 
-    addProduct(product: any) {
+    addProduct(product: Product) {
         this.products.update(p => [...p, product]);
     }
 

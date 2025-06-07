@@ -26,6 +26,7 @@ import { ProductService } from './product.service';
 })
 export class ProductForm {
     product = {
+        id: 0, //TODO: id issue
         name: '',
         type: 'Electronics',
         price: 0,
@@ -36,7 +37,7 @@ export class ProductForm {
 
     addProduct() {
         this.service.addProduct(this.product);
-        this.product = { name: '', type: 'Electronics', price: 0, supplier: '' };
+        this.product = { id: 0, name: '', type: 'Electronics', price: 0, supplier: '' }; //TODO: id issue
     }
 }
 

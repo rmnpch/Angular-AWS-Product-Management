@@ -26,10 +26,10 @@ import { ProductService } from './product.service';
       </thead>
       <tbody>
         <tr *ngFor="let p of results">
-          <td>{{ p.name }}</td>
+          <td>{{ p.name | titlecase }}</td>
           <td>{{ p.type }}</td>
-          <td>\${{ p.price }}</td>
-          <td>{{ p.supplier }}</td>
+          <td>{{ p.price | currency: 'AUD' }}</td>
+          <td>{{ p.supplier  }}</td>
         </tr>
       </tbody>
     </table>
