@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ProductForm } from './product-form';
+import { ProductList } from './product-list';
+import { SearchForm } from './search-form';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [ProductForm, ProductList, SearchForm],
+  template: `
+    <header class="p-3 bg-dark text-white">
+      <h1>Product Management Website</h1>
+      <small>Create, search and delete items</small>
+    </header>
+    <main class="container mt-4">
+      <app-search-form></app-search-form>
+      <app-product-form></app-product-form>
+      <app-product-list></app-product-list>
+    </main>
+  `
 })
-export class App {
-  protected title = 'assessment2-v2';
-}
+export class App { }
