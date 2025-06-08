@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
+
+//Imports other components
 import { ProductForm } from './product-form';
 import { ProductList } from './product-list';
 import { SearchForm } from './search-form';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProductForm, ProductList, SearchForm, HttpClientModule],
+  imports: [ProductForm, ProductList, SearchForm],
   template: `
     <header class="p-3 bg-dark text-white">
       <h1>Product Management Website</h1>
@@ -15,9 +16,12 @@ import { HttpClientModule } from '@angular/common/http';
     </header>
     <main class="container mt-4">
       <app-search-form></app-search-form>
+      <hr>
       <app-product-form></app-product-form>
+      <hr>
       <app-product-list></app-product-list>
     </main>
   `
 })
 export class App { }
+

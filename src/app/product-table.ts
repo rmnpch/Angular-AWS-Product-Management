@@ -34,5 +34,7 @@ import { Product } from './product.model';
 export class ProductTable {
   @Input() products: Product[] = [];
   @Input() canDelete = false;
+  //These two above grab the property coming from the parent container and the one below marks the event being emmited
   @Output() delete = new EventEmitter<string>();
 }
+// back to product-list class

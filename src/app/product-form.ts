@@ -28,33 +28,31 @@ import { Product } from './product.model';
   `
 })
 export class ProductForm {
-  product: Product = { // 
-    id: 0, // ID is handled by Lambda now
+  product: Product = {
+    id: 0,
     name: '',
     type: 'Electronics',
-    price: 0, // 
+    price: 0,
     supplier: ''
   };
   message: string = '';
 
-  // CRITICAL CHANGE: REMOVE ProductList injection from here
-  constructor(private service: ProductService) { } // 
+  constructor(private service: ProductService) { } //Similar to inejction
 
   addProduct() {
-    this.message = 'Adding product...';
-    this.service.addProduct(this.product).subscribe(
-      response => {
-        this.message = `Product '${this.product.name}' added successfully!`;
-        // Reset form
-        this.product = { id: 0, name: '', type: 'Electronics', price: 0, supplier: '' }; // 
-        // After adding, tell the ProductService to refresh its data
-        // This will in turn trigger ProductList to update via its subscription to productsSignal
-        this.service.getAll().subscribe(); // Just subscribe to trigger the fetch
+    this.service.addProduct(this.product).subscribe({
+      next: value => {
+        //Once you get a response for the product being added, reset the values that populate the form
+        this.product = { id: 0, name: '', type: 'Electronics', price: 0, supplier: '' };
+        //Call getAll to refresh the content of the page, triggered by the subscribe method
+        this.service.getAll().subscribe();
       },
-      error => {
-        this.message = `Error adding product: ${error.error.body || error.message}`;
-        console.error('Error adding product:', error);
+      error: err => {
+        this.message = `Error adding product: ${err.error.body || err.message}`;
+        console.error('Error adding product:', err);
       }
-    );
+    });
   }
 }
+
+//As an improvement maybe having a setter to reset the values of product
