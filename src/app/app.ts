@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ProductForm } from './product-form';
 import { ProductList } from './product-list';
 import { SearchForm } from './search-form';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ProductForm, ProductList, SearchForm],
+  imports: [ProductForm, ProductList, SearchForm, HttpClientModule],
   template: `
     <header class="p-3 bg-dark text-white">
       <h1>Product Management Website</h1>
