@@ -11,18 +11,18 @@ export class ProductService {
 
     private readonly initialProducts: Product[] = [
         {
-            id: 1,
-            name: 'PlayStation 5',
-            type: 'Gaming',
-            price: 799,
-            supplier: 'Sony Australia'
+            'id': 1,
+            'name': 'PlayStation 5',
+            'type': 'Gaming',
+            'price': 799,
+            'supplier': 'Sony Australia'
         },
         {
-            id: 2,
-            name: 'Apple AirPods Pro',
-            type: 'Audio',
-            price: 399,
-            supplier: 'Apple'
+            'id': 2,
+            'name': 'Apple AirPods Pro',
+            'type': 'Audio',
+            'price': 399,
+            'supplier': 'Apple'
         }
     ];
 
@@ -42,6 +42,8 @@ export class ProductService {
     }
 
     searchByName(name: string): Product[] {
+        console.log(JSON.parse(JSON.stringify(this.getAll())))
+
         return this.products().filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
     }
 }
