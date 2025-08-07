@@ -1,0 +1,3 @@
+[submodule "python-lambda-function"]
+	path = python-lambda-function
+	url = https://github.com/rmnpch/python-lambda-funciton.git
